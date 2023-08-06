@@ -17,4 +17,5 @@ while guess != random_number:
     else:
         break
 print("You gassed the number")
+
 print("it took you "+str(attempts)+" attempts to guess the correct number")
