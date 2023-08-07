@@ -1,46 +1,66 @@
 import random
 
-random_number = random.randrange(1, 9)
+difficulty_ranges = {
+    "easy": (1, 10),
+    "medium": (1, 50),
+    "hard": (1, 100)
+}
 
-attempts = 0
-numberOfHints = 3
 
-guess = int(input("Guess the number :"))
-
-
-def hints():
-    global numberOfHints
-    if numberOfHints > 0:
-        if random_number % 2 == 0:
-            print("The secret number is even")
-        else:
-            print("The secret number is odd")
-        numberOfHints -= 1
+def get_random_number(difficulty):
+    if difficulty in difficulty_ranges:
+        return random.randint(*difficulty_ranges[difficulty])
     else:
-        print("You have used all your hints.")
+        print("Invalid difficulty level. Using default range.")
+        return random.randint(*difficulty_ranges["easy"])
 
 
-while guess != random_number:
-    if guess < random_number:
-        print("Too low")
-        guess = int(input("Guess the number :"))
-        attempts += 1
-    elif guess > random_number:
-        print("Too High")
-        guess = int(input("Guess the number :"))
-        attempts += 1
+def provide_hint(number):
+    if number % 2 == 0:
+        print("The secret number is even")
     else:
-        break
+        print("The secret number is odd")
 
-    while attempts % 2 == 0:
-        user_hints =input(("Would you like to use a hint? yes or no"))
-        if user_hints == "yes":
-            hints()
+
+def main():
+    difficulty = input("Choose difficulty level (easy, medium, hard): ")
+    print("you have selected the ", difficulty)
+    random_number = get_random_number(difficulty)
+    attempts = 0
+    numberOfHints = 3
+
+    while True:
+        guess = get_guess()
+        attempts += 1
+
+        if guess < random_number:
+            print("Too low")
+        elif guess > random_number:
+            print("Too high")
         else:
+            print("You guessed the number!")
+            print("It took you", attempts, "attempts to guess the correct number")
             break
-        print("you got " + str(numberOfHints) + " hints left")
+
+        if attempts % 2 == 0 and numberOfHints > 0:
+            user_hints = input("Would you like to use a hint? (yes or no): ")
+            if user_hints == "yes":
+                provide_hint(random_number)
+                numberOfHints -= 1
+                print("You have", numberOfHints, "hints left")
+
+        if numberOfHints == 0:
+            print("You have used all your hints.")
 
 
+def get_guess():
+    while True:
+        try:
+            guess = int(input("Guess the number: "))
+            return guess
+        except ValueError:
+            print("Please enter a valid numeric input.")
 
-print("You guessed the number")
-print("It took you " + str(attempts) + " attempts to guess the correct number")
+
+if __name__ == "__main__":
+    main()
