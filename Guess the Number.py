@@ -27,7 +27,7 @@ def main():
     print("you have selected the ", difficulty)
     random_number = get_random_number(difficulty)
     attempts = 0
-    numberOfHints = 3
+    number_of_hints = 3
 
     while True:
         guess = get_guess()
@@ -42,14 +42,14 @@ def main():
             print("It took you", attempts, "attempts to guess the correct number")
             break
 
-        if attempts % 2 == 0 and numberOfHints > 0:
+        if attempts % 2 == 0 and number_of_hints > 0:
             user_hints = input("Would you like to use a hint? (yes or no): ")
             if user_hints == "yes":
                 provide_hint(random_number)
-                numberOfHints -= 1
-                print("You have", numberOfHints, "hints left")
+                number_of_hints -= 1
+                print("You have", number_of_hints, "hints left")
 
-        if numberOfHints == 0:
+        if number_of_hints == 0:
             print("You have used all your hints.")
 
 
