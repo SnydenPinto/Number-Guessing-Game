@@ -35,7 +35,8 @@ class NumberGuessingGame:
             else:
                 print("Try again. Your guess is too high.")
 
-    def display_instructions(self):
+    @staticmethod
+    def display_instructions():
         print('''**How to Play:**
         - The game will prompt you to enter your guess.
         - Type your guess using the keyboard and press Enter.
