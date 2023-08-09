@@ -1,7 +1,7 @@
 import game_logic
 
 
-def main_menu():
+def display_main_menu():
     while True:
         try:
             main_menu_user_input = int(input("""
@@ -20,20 +20,22 @@ def main_menu():
             print("Invalid input. Please enter a valid number.")
 
 
-option = main_menu()
+def main():
+    game = game_logic.NumberGuessingGame()
+    option = display_main_menu()
 
-if option == 1:
-    game_logic.start_game()
-    # Call the function to start the game
-    pass
-elif option == 2:
-    # Call the function to display instructions
-    game_logic.game_instructions()
-    main_menu()
-    pass
-elif option == 3:
-    # Call the function to display high scores
-    pass
-elif option == 4:
-    # Exit the program
-    print("Exiting the game.")
+    if option == 1:
+        username = input("Enter your username: ")
+        game.play_game(username)
+    elif option == 2:
+        game.display_instructions()
+        main()
+    elif option == 3:
+        game.display_high_scores()
+        main()
+    elif option == 4:
+        print("Exiting the game.")
+
+
+if __name__ == "__main__":
+    main()
