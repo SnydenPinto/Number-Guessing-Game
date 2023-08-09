@@ -1,66 +1,46 @@
 import random
 
-difficulty_ranges = {
-    "easy": (1, 10),
-    "medium": (1, 50),
-    "hard": (1, 100)
-}
 
 
-def get_random_number(difficulty):
-    if difficulty in difficulty_ranges:
-        return random.randint(*difficulty_ranges[difficulty])
-    else:
-        print("Invalid difficulty level. Using default range.")
-        return random.randint(*difficulty_ranges["easy"])
+def generator():
+    return random.randint(1, 10)
 
 
-def provide_hint(number):
-    if number % 2 == 0:
-        print("The secret number is even")
-    else:
-        print("The secret number is odd")
+number_of_hints = 3
 
 
-def main():
-    difficulty = input("Choose difficulty level (easy, medium, hard): ")
-    print("you have selected the ", difficulty)
-    random_number = get_random_number(difficulty)
-    attempts = 0
-    number_of_hints = 3
-
-    while True:
-        guess = get_guess()
-        attempts += 1
-
-        if guess < random_number:
-            print("Too low")
-        elif guess > random_number:
-            print("Too high")
-        else:
-            print("You guessed the number!")
-            print("It took you", attempts, "attempts to guess the correct number")
-            break
-
-        if attempts % 2 == 0 and number_of_hints > 0:
-            user_hints = input("Would you like to use a hint? (yes or no): ")
-            if user_hints == "yes":
-                provide_hint(random_number)
-                number_of_hints -= 1
-                print("You have", number_of_hints, "hints left")
-
-        if number_of_hints == 0:
-            print("You have used all your hints.")
-
-
-def get_guess():
+def get_userinput():
     while True:
         try:
             guess = int(input("Guess the number: "))
-            return guess
+            return guess  # Return the valid guess and exit the loop
         except ValueError:
-            print("Please enter a valid numeric input.")
+            print("Invalid input. Please enter a valid number.")
 
 
-if __name__ == "__main__":
-    main()
+def start_game():
+    number_of_attempts = 0
+    guess = generator()
+    while True:
+        user_guess = get_userinput()
+        if user_guess == guess:
+            print("Congratulations! You guessed it right. It took you", number_of_attempts, "tries to guess the "
+                                                                                            "correct number")
+            break
+        elif user_guess < guess:
+            print("Try again. Your guess is too low.")
+            number_of_attempts += 1
+        else:
+            print("Try again. Your guess is too high.")
+            number_of_attempts += 1
+
+
+def game_instructions():
+    print('''                       **How to Play:**
+                   - The game will prompt you to enter your guess.
+                   - Type your guess using the keyboard and press Enter.
+                   - If your guess is correct, you win the game!
+                   - If your guess is incorrect, the game will tell you whether your guess is too low or too high.
+                   - Continue making guesses until you successfully guess the secret number.
+    ''')
+    input("            Press Enter to return to the main menu...")

@@ -1,3 +1,6 @@
+import game_logic
+
+
 def main_menu():
     while True:
         try:
@@ -7,8 +10,7 @@ def main_menu():
                 2. Play Instructions
                 3. High Scores
                 4. Exit
-            Please select an option: 
-            """))
+            Please select an option: """))
 
             if main_menu_user_input in (1, 2, 3, 4):
                 return main_menu_user_input
@@ -21,10 +23,13 @@ def main_menu():
 option = main_menu()
 
 if option == 1:
+    game_logic.start_game()
     # Call the function to start the game
     pass
 elif option == 2:
     # Call the function to display instructions
+    game_logic.game_instructions()
+    main_menu()
     pass
 elif option == 3:
     # Call the function to display high scores
