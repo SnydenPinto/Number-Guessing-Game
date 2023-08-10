@@ -7,8 +7,29 @@ class NumberGuessingGame:
         self.number_of_attempts = 0
         self.high_score_db = HighScoreDatabase()  # Create an instance of the database
 
+    def set_difficulty(self):
+        while True:
+            print("Select a difficulty level:")
+            print("1. Easy")
+            print("2. Medium")
+            print("3. Hard")
+            choice = input("Enter your choice: ")
+
+            if choice in ('1', '2', '3'):
+                self.difficulty = choice
+                break
+            else:
+                print("Invalid choice. Please enter 1, 2, or 3.")
     def generator(self):
-        return random.randint(1, 10)
+        if self.difficulty == '1':
+            print("Difficulty set to easy. Guess the number between 1 and 10")
+            return random.randint(1, 10)
+        elif self.difficulty == '2':
+            print("Difficulty set to easy. Guess the number between 1 and 20")
+            return random.randint(1, 20)
+        elif self.difficulty == '3':
+            print("Difficulty set to easy. Guess the number between 1 and 50")
+            return random.randint(1, 50)
 
     def get_user_input(self):
         while True:

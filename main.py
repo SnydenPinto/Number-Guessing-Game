@@ -26,6 +26,7 @@ def main():
 
     if option == 1:
         username = input("Enter your username: ")
+        game.set_difficulty()
         game.play_game(username)
     elif option == 2:
         game.display_instructions()
