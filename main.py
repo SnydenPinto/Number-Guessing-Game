@@ -4,13 +4,13 @@ import game_logic
 def display_main_menu():
     while True:
         try:
-            main_menu_user_input = int(input("""
-            Welcome to Guess the Number Game!
-                1. Start Game
-                2. Play Instructions
-                3. High Scores
-                4. Exit
-            Please select an option: """))
+            print("Welcome to Guess the Number Game!")
+            print("1. Start Game")
+            print("2. Play Instructions")
+            print("3. High Scores")
+            print("4. Exit")
+
+            main_menu_user_input = int(input("Please select an option: "))
 
             if main_menu_user_input in (1, 2, 3, 4):
                 return main_menu_user_input
@@ -22,20 +22,22 @@ def display_main_menu():
 
 def main():
     game = game_logic.NumberGuessingGame()
-    option = display_main_menu()
 
-    if option == 1:
-        username = input("Enter your username: ")
-        game.set_difficulty()
-        game.play_game(username)
-    elif option == 2:
-        game.display_instructions()
-        main()
-    elif option == 3:
-        game.display_high_scores()
-        main()
-    elif option == 4:
-        print("Exiting the game.")
+    while True:
+        option = display_main_menu()
+
+        if option == 1:
+            print("Starting a new game...")
+            username = input("Enter your username: ")
+            game.set_difficulty()  # Ask for difficulty level
+            game.play_game(username)
+        elif option == 2:
+            game.display_instructions()
+        elif option == 3:
+            game.display_high_scores()
+        elif option == 4:
+            print("Exiting the game.")
+            break  # Exit the loop when the user chooses to exit
 
 
 if __name__ == "__main__":
