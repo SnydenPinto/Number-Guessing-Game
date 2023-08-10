@@ -1,6 +1,6 @@
 # Number Guessing Game
 
-Welcome to the Number Guessing Game repository! This is a simple text-based game where players can guess a randomly generated number. The game offers single-player and multiplayer modes, along with instructions and a high score tracking feature.
+Welcome to the Number Guessing Game! This is a simple text-based game where players can guess a randomly generated number. The game offers single-player and multiplayer modes, along with instructions and a high score tracking feature.
 
 ## Game Description
 
