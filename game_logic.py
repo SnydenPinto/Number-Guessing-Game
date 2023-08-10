@@ -58,6 +58,8 @@ class NumberGuessingGame:
             else:
                 print("Try again. Your guess is too high.")
 
+        self.number_of_attempts = 0
+
     @staticmethod
     def display_instructions():
         print('''**How to Play:**
