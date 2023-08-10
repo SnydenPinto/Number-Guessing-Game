@@ -20,17 +20,15 @@ def display_main_menu():
             print("Invalid input. Please enter a valid number.")
 
 
+
 def main():
     game = game_logic.NumberGuessingGame()
 
     while True:
         option = display_main_menu()
-
         if option == 1:
             print("Starting a new game...")
-            username = input("Enter your username: ")
-            game.set_difficulty()  # Ask for difficulty level
-            game.play_game(username)
+            game.game_mode()
         elif option == 2:
             game.display_instructions()
         elif option == 3:
