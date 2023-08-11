@@ -36,3 +36,7 @@ class HighScoreDatabase:
     def close(self):
         self.connection.close()
 
+    def username_exists(self, username):
+        highscores = self.get_highscores()  # Fetch usernames from the database
+        return any(entry[0] == username for entry in highscores)
+

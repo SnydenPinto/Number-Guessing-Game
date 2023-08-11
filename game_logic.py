@@ -43,6 +43,16 @@ class NumberGuessingGame:
             except ValueError:
                 print("Invalid input. Please enter a valid number.")
 
+    def validate_username(self):
+        while True:
+            username = input("Enter a username: ")
+            if len(username) < 4 or len(username) > 16:
+                print("Username must be between 4 and 16 characters.")
+            elif not username.isalnum():
+                print("Username must only contain letters and numbers.")
+            else:
+                return username
+
     def play_game(self, username):
         self.generator_instance = self.generator()
 
@@ -99,10 +109,11 @@ class NumberGuessingGame:
             choice = input("Enter your choice: ")
 
             if choice == "1":
-                username = input("Enter your username: ")
+                username = self.validate_username()
                 self.set_difficulty()
                 self.play_game(username)
             elif choice == "2":
+                self.set_difficulty()
                 self.multiplayer()
             else:
                 print("Invalid choice. Please enter 1 or 2.")
